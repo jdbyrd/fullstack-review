@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
+import RepoEntry from './components/RepoEntry.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,12 +11,40 @@ class App extends React.Component {
     this.state = { 
       repos: []
     }
-
+    this.getRepos = this.getRepos.bind(this);
   }
+
+  componentDidMount() {
+    window.addEventListener('load', this.getRepos);
+ }
+
+ getRepos () {
+  $.ajax({
+    url: '/repos',
+    dataType: 'json',
+    success: (data) => {
+      this.setState({repos: data});
+    },
+    error: (error) => {
+      console.log('error');
+    }
+  });
+ }
 
   search (term) {
     console.log(`${term} was searched`);
-    // TODO
+    $.ajax({
+      url: '/repos',
+      data: {term: term},
+      type: 'POST',
+      dataType: 'json',
+      success: (data) => {
+        console.log('success');
+      },
+      error: (error) => {
+        console.log('error');
+      }
+    });
   }
 
   render () {
@@ -27,4 +56,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));

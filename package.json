@@ -2,7 +2,7 @@
   "name": "github-fetcher-fullstack-v2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "start": "npm run react-dev && npm run server-dev",
     "react-dev": "webpack -d --watch",

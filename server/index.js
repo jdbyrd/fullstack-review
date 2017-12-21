@@ -12,10 +12,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/repos', function (req, res) {
   let username = req.body.term;
   let url = `https://api.github.com/search/repositories?q=user:${username}`
-
-  github.getReposByUsername(url);
-
-  res.json('OK');
+  github.getReposByUsername(url)
+  .then((data) => {
+    Promise.all(data.items.map(db.save))
+    .then(res.json('ok'))
+    .catch(res.josn('ok'));
+  })
 });
 
 app.get('/repos', function (req, res) {

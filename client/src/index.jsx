@@ -40,6 +40,7 @@ class App extends React.Component {
       dataType: 'json',
       success: (data) => {
         console.log('success');
+        this.getRepos();
       },
       error: (error) => {
         console.log('error');

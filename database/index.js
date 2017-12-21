@@ -7,20 +7,20 @@ let repoSchema = mongoose.Schema({
   url: String,
   size: Number,
   watchers: Number,
-  repoid: Number
+  repoid: {type: Number, unique: true}
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (data) => {
-  data.items.forEach((value) => {
-    Repo.find({repoid: value.id}).exec((err, results) => {
-      if(results.length === 0){
-        let newModel = new Repo({name: value.name, owner: value.owner.login, url: value.html_url, size: value.size, watchers: value.watchers, repoid: value.id});
-        newModel.save(function (err, newModel) {
-          if (err) return console.error(err);
-          console.log('Added value to DB');
-        });
+let save = (value) => {
+  return new Promise((resolve, reject) => {
+    let newModel = new Repo({name: value.name, owner: value.owner.login, url: value.html_url, size: value.size, watchers: value.watchers, repoid: value.id});
+    newModel.save(function (err, newModel) {
+      if (err){ 
+        console.log(err);
+        reject(err);
+      }else{
+        resolve('success');
       }
     });
   });

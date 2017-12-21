@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/index.jsx",
   "scripts": {
+    "start": "react-dev && server-dev",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js"
   },

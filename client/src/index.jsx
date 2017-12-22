@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('load', this.getRepos);
+    //window.addEventListener('load', this.getRepos);
  }
 
  getRepos () {

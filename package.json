@@ -2,10 +2,11 @@
   "name": "github-fetcher-fullstack-v2",
   "version": "1.0.0",
   "description": "",
-  "main": "client/src/index.jsx",
+  "main": "server/index.js",
   "scripts": {
+    "start": "npm run react-dev && npm run server-dev",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js",
+    "server-dev": "nodemon server/index.js"
   },
   "author": "Beth Johnson",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.17.0",
     "express": "^4.15.0",
     "jquery": "^3.1.1",
@@ -24,8 +26,5 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "request": "^2.81.0"
-  },
-  "engines": {
-    "node": "v6.11.5"
   }
 }

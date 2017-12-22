@@ -16,7 +16,7 @@ app.post('/repos', function (req, res) {
   .then((data) => {
     Promise.all(data.items.map(db.save))
     .then(res.json('ok'))
-    .catch(res.josn('ok'));
+    .catch(res.json('ok'));
   })
 });
 
